@@ -16,12 +16,11 @@ Ideal für Nutzer, die ihr System aufräumen und beschleunigen wollen. ⚡
 - Erstellt automatisch ein Log-File mit allen Aktionen
 
 ## 🖥️ Verwendung
-```powershell
-# Exe als Administrator öffnen
+- Exe als Administrator öffnen
 
 
 
-⚠️ Hinweis
+## ⚠️ Hinweis
 
 Benutzung auf eigene Gefahr!
 Erstelle vor der Ausführung einen Wiederherstellungspunkt oder ein Backup.
