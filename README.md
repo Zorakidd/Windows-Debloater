@@ -7,7 +7,7 @@ Ideal für Nutzer, die ihr System aufräumen und beschleunigen wollen. ⚡
 
 ## 📥 Download
 
-[![Download hier](https://img.shields.io/badge/⬇️_Download-hier-blue?style=for-the-badge)](https://example.invalid/debloater.ps1)
+[![Download hier](https://img.shields.io/badge/⬇️_Download-hier-blue?style=for-the-badge)](https://github.com/Zorakidd/Windows-Debloater/releases/download/v1.0/AppUninstall.exe)
 
 ---
 
