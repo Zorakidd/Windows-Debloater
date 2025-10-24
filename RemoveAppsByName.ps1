@@ -85,6 +85,8 @@ $appsToRemove = @(
     "*feedbackhub*",
     "*MicrosoftFamily*",
     "*Skype*",
+    "*Solitair*",
+    "*Spades*",
     "*Weather*",
     "*windowscommunicationsapps*",
     "*windowsmaps*",
