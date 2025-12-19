@@ -1,8 +1,8 @@
 param(
     # Technische Parameter
-    [string]$InputFile = ".\RemoveAppsByName.ps1",
-    [string]$OutputFile = ".\AppUninstall.exe",
-    [string]$IconFile = ".\icon.ico",
+    [string]$InputFile = (Join-Path $PSScriptRoot "RemoveAppsByName.ps1"),
+    [string]$OutputFile = (Join-Path $PSScriptRoot "AppUninstall.exe"),
+    [string]$IconFile = (Join-Path $PSScriptRoot "icon.ico"),
 
     # Metadaten
     [string]$Title = "App Uninstall",
