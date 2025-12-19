@@ -20,9 +20,9 @@ param(
 #>
 
 if (-not (Get-Command Invoke-PS2EXE -ErrorAction SilentlyContinue)) {
-    Write-Error "Invoke-PS2EXE ist nicht verfügbar. Bitte installiere das PS2EXE-Modul."
+    Write-Error "Invoke-PS2EXE ist nicht verfuegbar. Bitte installiere das PS2EXE-Modul."
     Write-Host "Installiere es mit:"
-    Write-Host "    Install-Module -Name PS2EXE -Scope CurrentUser"
+    Write-Host "Install-Module -Name PS2EXE -Scope CurrentUser"
     exit 1
 }
 
