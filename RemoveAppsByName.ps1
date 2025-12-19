@@ -22,12 +22,12 @@ function Write-Log {
             New-Item -Path $parent -ItemType Directory -Force | Out-Null
         }
         # Schreibe den Log-Eintrag (erstellt die Datei falls nötig)
-        $entry | Out-File -FilePath $LogDatei -Append -Encoding UTF8NoBOM
+        $entry | Out-File -FilePath $LogDatei -Append -Encoding UTF8
     }
     catch {
         # Wenn Schreiben fehlschlägt, schreibe in das TEMP-Verzeichnis als Fallback
         $fallback = Join-Path $env:TEMP 'Deinstallation_Log.txt'
-        $entry | Out-File -FilePath $fallback -Append -Encoding UTF8NoBOM
+        $entry | Out-File -FilePath $fallback -Append -Encoding UTF8
     }
 }
 
@@ -63,7 +63,7 @@ foreach ($candidate in $logDirCandidates) {
         }
         # Test write permission by creating a temporary file
         $testFile = Join-Path -Path $candidate -ChildPath ('._logpermtest_{0}.tmp' -f ([System.Guid]::NewGuid().ToString()))
-        '' | Out-File -FilePath $testFile -Encoding UTF8NoBOM
+        '' | Out-File -FilePath $testFile -Encoding UTF8
         Remove-Item -Path $testFile -ErrorAction SilentlyContinue
         $logDir = $candidate
         break
@@ -223,7 +223,7 @@ foreach ($app in $appsToRemove) {
         }
     }
     catch {
-        Write-Log "  ✗ Fehler beim Entfernen von $app : $($_.Exception.Message)"
+        Write-Log "  [ERROR] Fehler beim Entfernen von $app : $($_.Exception.Message)"
     }
 
     # Provisioned Packages entfernen (für neue Benutzer)
@@ -234,12 +234,12 @@ foreach ($app in $appsToRemove) {
         if ($provisionedPackages.Count -gt 0) {
             foreach ($provPackage in $provisionedPackages) {
                 $provPackage | Remove-AppxProvisionedPackage -Online -ErrorAction Stop
-                Write-Log "  ✓ Provisioned Package entfernt: $($provPackage.PackageName)"
+                Write-Log "  [OK] Provisioned Package entfernt: $($provPackage.PackageName)"
             }
         }
     }
     catch {
-        Write-Log "  ✗ Fehler bei Provisioned Package '$app': $($_.Exception.Message)"
+        Write-Log "  [ERROR] Fehler bei Provisioned Package '$app': $($_.Exception.Message)"
     }
 }
 
@@ -256,7 +256,7 @@ Start-Sleep -Seconds 2
 # MessageBox für Reboot anzeigen
 Add-Type -AssemblyName PresentationFramework
 $logMsg = "Das Log wurde gespeichert unter:`n$LogDatei"
-$msg = "Ein Neustart wird empfohlen, um alle Änderungen abzuschließen.`n`n$logMsg`n`nMöchten Sie den Computer jetzt neu starten?"
+$msg = "Ein Neustart wird empfohlen, um alle Changes abzuschliessen.`n`n$logMsg`n`nWollen Sie den Computer jetzt neu starten?"
 
 $Antwort = [System.Windows.MessageBox]::Show(
     $msg,
