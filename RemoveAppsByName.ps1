@@ -22,12 +22,12 @@ function Write-Log {
             New-Item -Path $parent -ItemType Directory -Force | Out-Null
         }
         # Schreibe den Log-Eintrag (erstellt die Datei falls nötig)
-        $entry | Out-File -FilePath $LogDatei -Append -Encoding UTF8
+        $entry | Out-File -FilePath $LogDatei -Append -Encoding UTF8NoBOM
     }
     catch {
         # Wenn Schreiben fehlschlägt, schreibe in das TEMP-Verzeichnis als Fallback
         $fallback = Join-Path $env:TEMP 'Deinstallation_Log.txt'
-        $entry | Out-File -FilePath $fallback -Append -Encoding UTF8
+        $entry | Out-File -FilePath $fallback -Append -Encoding UTF8NoBOM
     }
 }
 
@@ -42,7 +42,6 @@ try {
     if ($cwd -and (Test-Path -Path $cwd -PathType Container)) { $logDirCandidates += $cwd }
 }
 catch {
-    # ignore
 }
 
 $downloads = Join-Path -Path $env:USERPROFILE -ChildPath 'Downloads'
@@ -64,7 +63,7 @@ foreach ($candidate in $logDirCandidates) {
         }
         # Test write permission by creating a temporary file
         $testFile = Join-Path -Path $candidate -ChildPath ('._logpermtest_{0}.tmp' -f ([System.Guid]::NewGuid().ToString()))
-        '' | Out-File -FilePath $testFile -Encoding UTF8
+        '' | Out-File -FilePath $testFile -Encoding UTF8NoBOM
         Remove-Item -Path $testFile -ErrorAction SilentlyContinue
         $logDir = $candidate
         break
@@ -192,7 +191,6 @@ $appsToRemove = @(
     "Microsoft.BingSearch",
     "Microsoft.MSPaintApp",
     "Microsoft.OutlookForWindows",
-    "Microsoft.Edge.GameAssist",
     "Microsoft.GamingApp",
     "Microsoft.Xbox.TCUI",
     "Microsoft.XboxApp",
