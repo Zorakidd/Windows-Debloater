@@ -94,9 +94,10 @@ $appsToRemove = @(
     "*YourPhone*",
     "7EE7776C.LinkedInforWindows",
     "Clipchamp.Clipchamp",
-    # "MicrosoftWindows.Client.CoreAI",
+    "Microsoft.Clipchamp",
     "Microsoft.3DBuilder",
     "Microsoft.3DViewer",
+    "Microsoft.Microsoft3DViewer",
     "Microsoft.549981C3F5F10",
     "Microsoft.Asphalt8Airborne",
     "Microsoft.BingFinance",
@@ -109,7 +110,6 @@ $appsToRemove = @(
     "Microsoft.CandyCrushFriends",
     "Microsoft.CandyCrushSaga",
     "Microsoft.CandyCrushSodaSaga",
-    "Microsoft.Clipchamp",
     "Microsoft.Copilot",
     "Microsoft.Cortana",
     "Microsoft.CrossDevice",
@@ -118,9 +118,6 @@ $appsToRemove = @(
     "Microsoft.Feedbackhub",
     "Microsoft.GetHelp",
     "Microsoft.Getstarted",
-    "Microsoft.Microsoft3DViewer",
-    "Microsoft.MicrosoftEdge",
-    "Microsoft.MicrosoftEdge.Stable",
     "Microsoft.MicrosoftFamily",
     "Microsoft.MicrosoftNews",
     "Microsoft.MicrosoftOfficeHub",
@@ -131,8 +128,6 @@ $appsToRemove = @(
     "Microsoft.MicrosoftXboxIdentityProvider",
     "Microsoft.MicrosoftXboxSpeechToTextOverlay",
     "Microsoft.MicrosoftYourPhone",
-    "Microsoft.MicrosoftZuneMusic",
-    "Microsoft.MicrosoftZuneVideo",
     "Microsoft.MixedReality.Portal",
     "Microsoft.MSPaint",
     "Microsoft.Office.Desktop",
@@ -163,30 +158,47 @@ $appsToRemove = @(
     "Microsoft.WindowsStickyNotes",
     "Microsoft.WindowsTips",
     "Microsoft.WindowsWeather",
-    "Microsoft.WindowsXboxGameOverlay",
-    "Microsoft.WindowsXboxSigningTool",
-    "Microsoft.Windows.DevHome",
-    # "Microsoft.Windows.StartMenuExperienceHost",
+    # "Microsoft.WindowsXboxGameOverlay",
+    # "Microsoft.WindowsXboxSigningTool",
+    # "Microsoft.XboxApp",
+    # "Microsoft.GamingApp",
+    # "Microsoft.Xbox.TCUI",
+    # "Microsoft.XboxGamingOverlay",
+    # "Microsoft.XboxIdentityProvider",
+    # "Microsoft.XboxSpeechToTextOverlay",
+    # "Microsoft.XboxGamingOverlay".
+    # "Microsoft.XboxGameCallableUI",
+    # "Microsoft.GamingServices",
+    # "Microsoft.GamingApp",
+    # "Microsoft.Windows.DevHome",
+    "Microsoft.Edge.GameAssist",
+    "Microsoft.MicrosoftEdge",
+    "Microsoft.MicrosoftEdge.Stable",
+    "Microsoft.MicrosoftEdge.Stable"
+    "Microsoft.MicrosoftEdgeDevToolsClient",
+    "Microsoft.Ink.Handwriting*",
+    "Microsoft.Windows.NarratorQuickStart",
+    "Microsoft.Windows.SecureAssessmentBrowser",
+    "Microsoft.Windows.AssignedAccessLockApp",
+    "Microsoft.Windows.ParentalControls",
+    "Microsoft.Windows.PeopleExperienceHost",
     "Microsoft.YourPhone",
+    # "Microsoft.ZuneMusic", # Für Windows Media Player
+    # "Microsoft.MicrosoftZuneMusic",
+    "Microsoft.MicrosoftZuneVideo",
     "Microsoft.ZuneVideo",
-    "Microsoft.ZuneMusic",
-    "Microsoft.Paint",
     "Microsoft.PowerAutomateDesktop",
     "Microsoft.PeopleApp",
     "Microsoft.BingSearch",
     "Microsoft.MSPaintApp",
+    "Microsoft.Paint",
     "Microsoft.OutlookForWindows",
-    "Microsoft.Edge.GameAssist",
-    "Microsoft.GamingApp",
-    "Microsoft.Xbox.TCUI",
-    "Microsoft.XboxApp",
-    "Microsoft.XboxGamingOverlay",
-    "Microsoft.XboxIdentityProvider",
-    "Microsoft.XboxSpeechToTextOverlay",
     "Microsoft.XING",
     "MicrosoftCorporationII.QuickAssist",
     "MSTeams",
-    "SpotifyAB.SpotifyMusic"
+    "SpotifyAB.SpotifyMusic",
+    "Microsoft.WindowsCalculator",
+    "Microsoft.Paint"
 )
 
 Write-Host "Log-Datei: $LogDatei"
@@ -199,7 +211,7 @@ foreach ($app in $appsToRemove) {
     try {
         $package = Get-AppxPackage -AllUsers -Name $app -ErrorAction Stop
         if ($null -ne $package) {
-            $package | Remove-AppxPackage -ErrorAction Stop
+            $package | Remove-AppxPackage -AllUsers -ErrorAction Stop
             Write-Log "App $app wurde erfolgreich entfernt."
         }
         else {
