@@ -1,0 +1,12 @@
+# Nach dem Ende der foreach-Schleife
+Write-Log "=== Weitere Systemkomponenten entfernen ==="
+
+# Remotedesktopverbindungs-App deinstallieren (falls möglich)
+try {
+    Write-Log "Versuche Remotedesktopverbindungs-App zu deinstallieren..."
+    Start-Process -FilePath "mstsc.exe" -ArgumentList "/uninstall" -Verb RunAs -Wait
+    Write-Log "Remotedesktopverbindungs-App wurde deinstalliert (sofern unterstützt)."
+}
+catch {
+    Write-Log "Fehler beim Entfernen der Remotedesktopverbindungs-App: $($_.Exception.Message)"
+}
