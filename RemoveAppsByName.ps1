@@ -8,6 +8,29 @@ param(
     [switch]$TestLog
 )
 
+# ========================================
+# Funktion: Log schreiben
+# ========================================
+function Write-Log {
+    param([string]$Nachricht)
+    $Zeit = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    $entry = "$Zeit - $Nachricht"
+    try {
+        # Stelle sicher, dass das Verzeichnis existiert
+        $parent = Split-Path -Parent $LogDatei
+        if (-not (Test-Path -Path $parent)) {
+            New-Item -Path $parent -ItemType Directory -Force | Out-Null
+        }
+        # Schreibe den Log-Eintrag (erstellt die Datei falls nötig)
+        $entry | Out-File -FilePath $LogDatei -Append -Encoding UTF8
+    }
+    catch {
+        # Wenn Schreiben fehlschlägt, schreibe in das TEMP-Verzeichnis als Fallback
+        $fallback = Join-Path $env:TEMP 'Deinstallation_Log.txt'
+        $entry | Out-File -FilePath $fallback -Append -Encoding UTF8
+    }
+}
+
 # Log-Datei Pfad (robust)
 # Bevorzuge das aktuelle Arbeitsverzeichnis (der Ort, von dem das Skript ausgeführt wird).
 # Falls das aktuelle Verzeichnis nicht vom Dateisystem ist oder nicht beschreibbar ist,
@@ -19,7 +42,6 @@ try {
     if ($cwd -and (Test-Path -Path $cwd -PathType Container)) { $logDirCandidates += $cwd }
 }
 catch {
-    # ignore
 }
 
 $downloads = Join-Path -Path $env:USERPROFILE -ChildPath 'Downloads'
@@ -56,28 +78,21 @@ if (-not $logDir) { $logDir = $env:TEMP }
 
 $LogDatei = Join-Path -Path $logDir -ChildPath 'Deinstallation_Log.txt'
 
-# Funktion: Log schreiben
-function Write-Log {
-    param([string]$Nachricht)
-    $Zeit = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    $entry = "$Zeit - $Nachricht"
-    try {
-        # Stelle sicher, dass das Verzeichnis existiert
-        $parent = Split-Path -Parent $LogDatei
-        if (-not (Test-Path -Path $parent)) {
-            New-Item -Path $parent -ItemType Directory -Force | Out-Null
-        }
-        # Schreibe den Log-Eintrag (erstellt die Datei falls nötig)
-        $entry | Out-File -FilePath $LogDatei -Append -Encoding UTF8
-    }
-    catch {
-        # Wenn Schreiben fehlschlägt, schreibe in das TEMP-Verzeichnis als Fallback
-        $fallback = Join-Path $env:TEMP 'Deinstallation_Log.txt'
-        $entry | Out-File -FilePath $fallback -Append -Encoding UTF8
-    }
+# ========================================
+# Sektion: Testmodus prüfen
+# ========================================
+
+if ($TestLog) {
+    Write-Host "TEST-MODUS: Skript wird beendet, ohne Apps zu entfernen."
+    Write-Log "TEST-MODUS: Keine Apps entfernt"
+    exit
 }
 
-# Liste der Deinstallationsbefehle (als Strings)
+# ========================================
+# Sektion: Deinstallation der Apps
+# ========================================
+
+# Liste der zu entfernenen Apps (als Strings)
 $appsToRemove = @(
     "*3d*",
     "*CandyCrush*",
@@ -193,6 +208,12 @@ $appsToRemove = @(
     "Microsoft.MSPaintApp",
     "Microsoft.Paint",
     "Microsoft.OutlookForWindows",
+    "Microsoft.GamingApp",
+    "Microsoft.Xbox.TCUI",
+    "Microsoft.XboxApp",
+    "Microsoft.XboxGamingOverlay",
+    "Microsoft.XboxIdentityProvider",
+    "Microsoft.XboxSpeechToTextOverlay",
     "Microsoft.XING",
     "MicrosoftCorporationII.QuickAssist",
     "MSTeams",
@@ -203,11 +224,13 @@ $appsToRemove = @(
 
 Write-Host "Log-Datei: $LogDatei"
 Write-Host "Log-Verzeichnis vorhanden: $(Test-Path -Path (Split-Path $LogDatei -Parent))"
-
+Write-Host ""
+Write-Host "Starte Deinstallation..." -ForegroundColor Green
 Write-Log "=== Starte Deinstallation ==="
 
-# PowerShell-Skript: Entfernen bestimmter Apps mit Fehlerbehandlung
+# Entfernen bestimmter Apps mit Fehlerbehandlung aus der Liste
 foreach ($app in $appsToRemove) {
+
     try {
         $package = Get-AppxPackage -AllUsers -Name $app -ErrorAction Stop
         if ($null -ne $package) {
@@ -219,23 +242,44 @@ foreach ($app in $appsToRemove) {
         }
     }
     catch {
-        Write-Log "Fehler beim Entfernen von $app : $($_.Exception.Message)"
+        Write-Log "  [ERROR] Fehler beim Entfernen von $app : $($_.Exception.Message)"
+    }
+
+    # Provisioned Packages entfernen (für neue Benutzer)
+    try {
+        $provisionedPackages = Get-AppxProvisionedPackage -Online -ErrorAction SilentlyContinue | 
+        Where-Object { $_.PackageName -like $app }
+        
+        if ($provisionedPackages.Count -gt 0) {
+            foreach ($provPackage in $provisionedPackages) {
+                $provPackage | Remove-AppxProvisionedPackage -Online -ErrorAction Stop
+                Write-Log "  [OK] Provisioned Package entfernt: $($provPackage.PackageName)"
+            }
+        }
+    }
+    catch {
+        Write-Log "  [ERROR] Fehler bei Provisioned Package '$app': $($_.Exception.Message)"
     }
 }
 
+# ========================================
+# Sektion: Abschluss und Neustart
+# ========================================
+
 Write-Host ""
-
+Write-Host "Deinstallation abgeschlossen!" -ForegroundColor Green
 Write-Log "=== Deinstallation abgeschlossen ==="
-
 Start-Sleep -Seconds 2
+
+
 # MessageBox für Reboot anzeigen
 Add-Type -AssemblyName PresentationFramework
 $logMsg = "Das Log wurde gespeichert unter:`n$LogDatei"
-$msg = "Ein Neustart wird empfohlen, um alle Änderungen abzuschließen.`n`n$logMsg`n`nMöchten Sie den Computer jetzt neu starten?"
+$msg = "Ein Neustart wird empfohlen, um alle Changes abzuschliessen.`n`n$logMsg`n`nWollen Sie den Computer jetzt neu starten?"
 
 $Antwort = [System.Windows.MessageBox]::Show(
     $msg,
-    "Systemwartung  Neustart empfohlen",
+    "Systemwartung Neustart empfohlen",
     'YesNo',
     'Question'
 )
@@ -247,4 +291,5 @@ if ($Antwort -eq "Yes") {
 else {
     Write-Log "Benutzer hat Neustart abgelehnt."
 }
+
 # Ende des Skripts

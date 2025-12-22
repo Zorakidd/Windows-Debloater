@@ -1,8 +1,8 @@
 param(
     # Technische Parameter
-    [string]$InputFile = ".\RemoveAppsByName.ps1",
-    [string]$OutputFile = ".\AppUninstall.exe",
-    [string]$IconFile = ".\icon.ico",
+    [string]$InputFile = (Join-Path $PSScriptRoot "RemoveAppsByName.ps1"),
+    [string]$OutputFile = (Join-Path $PSScriptRoot "AppUninstall.exe"),
+    [string]$IconFile = (Join-Path $PSScriptRoot "icon.ico"),
 
     # Metadaten
     [string]$Title = "App Uninstall",
@@ -20,9 +20,9 @@ param(
 #>
 
 if (-not (Get-Command Invoke-PS2EXE -ErrorAction SilentlyContinue)) {
-    Write-Error "Invoke-PS2EXE ist nicht verfügbar. Bitte installiere das PS2EXE-Modul."
+    Write-Error "Invoke-PS2EXE ist nicht verfuegbar. Bitte installiere das PS2EXE-Modul."
     Write-Host "Installiere es mit:"
-    Write-Host "    Install-Module -Name PS2EXE -Scope CurrentUser"
+    Write-Host "Install-Module -Name PS2EXE -Scope CurrentUser"
     exit 1
 }
 
