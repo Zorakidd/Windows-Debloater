@@ -11,7 +11,7 @@ And the last is an all uninstall version, It will delete everythin exept the Mic
 
 ## 📥 Download
 
-[![Download standard](https://img.shields.io/badge/⬇️_Download-standard-blue?style=for-the-badge)](https://github.com/Zorakidd/Windows-Debloater/releases/download/Dailyv1.0/AppUninstallDailyVersion.exe)
+[![Download ](https://img.shields.io/badge/⬇️_Download-standard-blue?style=for-the-badge)](https://github.com/Zorakidd/Windows-Debloater/releases/download/Dailyv1.0/AppUninstallDailyVersion.exe)
 [![Download Minecraft-friendly](https://img.shields.io/badge/⬇️_Minecraft-friendly-blue?style=for-the-badge)](https://github.com/Zorakidd/Windows-Debloater/releases/download/XBOXv1.0/AppUninstallXBOXVersion.exe)
 [![Download All-uninstall](https://img.shields.io/badge/⬇️_All-uninstall-blue?style=for-the-badge)](https://github.com/Zorakidd/Windows-Debloater/releases/download/XBOXv1.0/AppUninstall.exe)
 
