@@ -2,10 +2,10 @@
 
 A simple PowerShell script to remove unnecessary preinstalled Windows apps and bloatware.  
 Ideal for users who want to clean up and speed up their system. ⚡
-There are three versions.
-The first is left with some daily apps I use like Notepad and Photos and A media player for Audio and Video (technecally you could use Photos)
-The second is for Minecraft due to XBOX API in it.
-And the last is an all uninstall version, It will delete everythin exept the MicroSoft Store, because of some system componente dependancy
+There are three versions:
+- The first is left with some daily apps I use like Notepad and Photos and A media player for Audio and Video (technecally you could use Photos)
+- The second is for Minecraft due to XBOX API in it.
+- And the last is an all uninstall version, It will delete everythin exept the MicroSoft Store, because of some system componente dependancy
 
 ---
 
