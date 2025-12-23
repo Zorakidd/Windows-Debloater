@@ -177,7 +177,7 @@ $appsToRemove = @(
     "Microsoft.WindowsStickyNotes",
     "Microsoft.WindowsTips",
     "Microsoft.WindowsWeather",
-    "Microsoft.XboxGamingOverlay", # Damit Gaming Overlay nicht nervt
+    # "Microsoft.XboxGamingOverlay", # Damit Gaming Overlay nicht nervt
     "Microsoft.MicrosoftXboxApp", # Wegen Minecraft etc.
     "Microsoft.MicrosoftXboxIdentityProvider",
     "Microsoft.MicrosoftXboxSpeechToTextOverlay",
@@ -214,11 +214,11 @@ $appsToRemove = @(
     "MSTeams",
     "Microsoft.WindowsCalculator",
     "Microsoft.WindowsVoiceRecorder",
-    "Microsoft.WindowsNotepad", # Die Dinger nutze ich selbst
-    "Microsoft.Windows.Photos",
-    "Microsoft.ScreenSketch",
-    "Microsoft.ZuneMusic",
-    "Microsoft.MicrosoftZuneMusic",
+    # "Microsoft.WindowsNotepad", # Die Dinger nutze ich selbst
+    # "Microsoft.Windows.Photos",
+    # "Microsoft.ScreenSketch",
+    # "Microsoft.ZuneMusic",
+    # "Microsoft.MicrosoftZuneMusic",
     "SpotifyAB.SpotifyMusic" # Falls Spotify App installiert ist
 )
 

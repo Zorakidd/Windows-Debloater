@@ -1,7 +1,7 @@
 param(
     # Technische Parameter
-    [string]$InputFile = (Join-Path $PSScriptRoot "RemoveAppsByName.ps1"),
-    [string]$OutputFile = (Join-Path $PSScriptRoot "AppUninstall.exe"),
+    [string]$InputFile = (Join-Path $PSScriptRoot "AppUninstallDailyVersion.ps1"),
+    [string]$OutputFile = (Join-Path $PSScriptRoot "AppUninstallDailyVersion.exe"),
     [string]$IconFile = (Join-Path $PSScriptRoot "icon.ico"),
 
     # Metadaten

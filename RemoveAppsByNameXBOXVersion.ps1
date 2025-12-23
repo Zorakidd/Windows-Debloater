@@ -212,10 +212,9 @@ $appsToRemove = @(
     "Microsoft.XING",
     "MicrosoftCorporationII.QuickAssist",
     "MSTeams",
-    "Microsoft.Paint",
     "Microsoft.WindowsCalculator"
+    "Microsoft.WindowsVoiceRecorder"
     # "Microsoft.WindowsNotepad", # Die Dinger nutze ich selbst
-    # "Microsoft.WindowsVoiceRecorder",
     # "Microsoft.Windows.Photos"
     # "Microsoft.ScreenSketch",
     # "Microsoft.ZuneMusic",
