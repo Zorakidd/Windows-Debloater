@@ -177,18 +177,18 @@ $appsToRemove = @(
     "Microsoft.WindowsStickyNotes",
     "Microsoft.WindowsTips",
     "Microsoft.WindowsWeather",
-    # "Microsoft.XboxGamingOverlay", # Damit Gaming Overlay nicht nervt
-    # "Microsoft.MicrosoftXboxApp", # Wegen Minecraft etc.
-    # "Microsoft.MicrosoftXboxIdentityProvider",
-    # "Microsoft.MicrosoftXboxSpeechToTextOverlay",
-    # "Microsoft.WindowsXboxSigningTool",
-    # "Microsoft.XboxApp",
-    # "Microsoft.GamingApp",
-    # "Microsoft.GamingServices",
-    # "Microsoft.Xbox.TCUI",
-    # "Microsoft.XboxIdentityProvider",
-    # "Microsoft.XboxSpeechToTextOverlay",
-    # "Microsoft.XboxGameCallableUI",
+    "Microsoft.XboxGamingOverlay", # Damit Gaming Overlay nicht nervt
+    "Microsoft.MicrosoftXboxApp", # Wegen Minecraft etc.
+    "Microsoft.MicrosoftXboxIdentityProvider",
+    "Microsoft.MicrosoftXboxSpeechToTextOverlay",
+    "Microsoft.WindowsXboxSigningTool",
+    "Microsoft.XboxApp",
+    "Microsoft.GamingApp",
+    "Microsoft.GamingServices",
+    "Microsoft.Xbox.TCUI",
+    "Microsoft.XboxIdentityProvider",
+    "Microsoft.XboxSpeechToTextOverlay",
+    "Microsoft.XboxGameCallableUI",
     "Microsoft.Windows.DevHome",
     "Microsoft.Edge.GameAssist",
     "Microsoft.MicrosoftEdge",
@@ -213,14 +213,14 @@ $appsToRemove = @(
     "MicrosoftCorporationII.QuickAssist",
     "MSTeams",
     "Microsoft.Paint",
-    "Microsoft.WindowsCalculator"
+    "Microsoft.WindowsCalculator",
     # "Microsoft.WindowsNotepad", # Die Dinger nutze ich selbst
-    # "Microsoft.WindowsVoiceRecorder",
-    # "Microsoft.Windows.Photos"
+    "Microsoft.WindowsVoiceRecorder",
+    "Microsoft.Windows.Photos",
     # "Microsoft.ScreenSketch",
     # "Microsoft.ZuneMusic",
     # "Microsoft.MicrosoftZuneMusic",
-    # "SpotifyAB.SpotifyMusic" # Falls Spotify App installiert ist
+    "SpotifyAB.SpotifyMusic" # Falls Spotify App installiert ist
 )
 
 Write-Host "Log-Datei: $LogDatei"
