@@ -108,6 +108,12 @@ $appsToRemove = @(
     "*xing*",
     "*YourPhone*",
     "7EE7776C.LinkedInforWindows",
+    "LinkedInforWindows",
+    "Microsoft.BioEnrollment",
+    "Microsoft.MSPaint3D",
+    "Microsoft.Paint3D",
+    "Microsoft.PeopleExperienceHost",
+    "Microsoft.ParentalControls",
     "Clipchamp.Clipchamp",
     "Microsoft.Clipchamp",
     "Microsoft.3DBuilder",
@@ -129,29 +135,27 @@ $appsToRemove = @(
     "Microsoft.Cortana",
     "Microsoft.CrossDevice",
     "Microsoft.DrawboardPDF",
-    "Microsoft.Edge.GameAssist",
     "Microsoft.Feedbackhub",
+    "Microsoft.WindowsFeedbackhub",
     "Microsoft.GetHelp",
     "Microsoft.Getstarted",
     "Microsoft.MicrosoftFamily",
     "Microsoft.MicrosoftNews",
-    "Microsoft.MicrosoftOfficeHub",
     "Microsoft.MicrosoftSolitaireCollection",
     "Microsoft.MicrosoftStickyNotes",
     "Microsoft.MicrosoftWindowsFeedbackHub",
-    "Microsoft.MicrosoftXboxApp",
-    "Microsoft.MicrosoftXboxIdentityProvider",
-    "Microsoft.MicrosoftXboxSpeechToTextOverlay",
+    "MicrosoftWindows.Client.WebExperience",
     "Microsoft.MicrosoftYourPhone",
     "Microsoft.MixedReality.Portal",
     "Microsoft.MSPaint",
+    "Microsoft.MicrosoftOfficeHub", # Office Dinge
     "Microsoft.Office.Desktop",
     "Microsoft.Office.Lens",
     "Microsoft.Office.OneNote",
     "Microsoft.Office.Sway",
+    "Microsoft.OneNote",
     "Microsoft.OneConnect",
     "Microsoft.OneDrive",
-    "Microsoft.OneNote",
     "Microsoft.People",
     "Microsoft.PhonicsApp",
     "Microsoft.PSAko",
@@ -173,23 +177,22 @@ $appsToRemove = @(
     "Microsoft.WindowsStickyNotes",
     "Microsoft.WindowsTips",
     "Microsoft.WindowsWeather",
-    # "Microsoft.WindowsXboxGameOverlay",
+    # "Microsoft.XboxGamingOverlay", # Damit Gaming Overlay nicht nervt
+    # "Microsoft.MicrosoftXboxApp", # Wegen Minecraft etc.
+    # "Microsoft.MicrosoftXboxIdentityProvider",
+    # "Microsoft.MicrosoftXboxSpeechToTextOverlay",
     # "Microsoft.WindowsXboxSigningTool",
     # "Microsoft.XboxApp",
     # "Microsoft.GamingApp",
+    # "Microsoft.GamingServices",
     # "Microsoft.Xbox.TCUI",
-    # "Microsoft.XboxGamingOverlay",
     # "Microsoft.XboxIdentityProvider",
     # "Microsoft.XboxSpeechToTextOverlay",
-    # "Microsoft.XboxGamingOverlay".
     # "Microsoft.XboxGameCallableUI",
-    # "Microsoft.GamingServices",
-    # "Microsoft.GamingApp",
-    # "Microsoft.Windows.DevHome",
+    "Microsoft.Windows.DevHome",
     "Microsoft.Edge.GameAssist",
     "Microsoft.MicrosoftEdge",
     "Microsoft.MicrosoftEdge.Stable",
-    "Microsoft.MicrosoftEdge.Stable"
     "Microsoft.MicrosoftEdgeDevToolsClient",
     "Microsoft.Ink.Handwriting*",
     "Microsoft.Windows.NarratorQuickStart",
@@ -198,8 +201,6 @@ $appsToRemove = @(
     "Microsoft.Windows.ParentalControls",
     "Microsoft.Windows.PeopleExperienceHost",
     "Microsoft.YourPhone",
-    # "Microsoft.ZuneMusic", # Für Windows Media Player
-    # "Microsoft.MicrosoftZuneMusic",
     "Microsoft.MicrosoftZuneVideo",
     "Microsoft.ZuneVideo",
     "Microsoft.PowerAutomateDesktop",
@@ -208,18 +209,18 @@ $appsToRemove = @(
     "Microsoft.MSPaintApp",
     "Microsoft.Paint",
     "Microsoft.OutlookForWindows",
-    "Microsoft.GamingApp",
-    "Microsoft.Xbox.TCUI",
-    "Microsoft.XboxApp",
-    "Microsoft.XboxGamingOverlay",
-    "Microsoft.XboxIdentityProvider",
-    "Microsoft.XboxSpeechToTextOverlay",
     "Microsoft.XING",
     "MicrosoftCorporationII.QuickAssist",
     "MSTeams",
-    "SpotifyAB.SpotifyMusic",
-    "Microsoft.WindowsCalculator",
-    "Microsoft.Paint"
+    "Microsoft.Paint",
+    "Microsoft.WindowsCalculator"
+    # "Microsoft.WindowsNotepad", # Die Dinger nutze ich selbst
+    # "Microsoft.WindowsVoiceRecorder",
+    # "Microsoft.Windows.Photos"
+    # "Microsoft.ScreenSketch",
+    # "Microsoft.ZuneMusic",
+    # "Microsoft.MicrosoftZuneMusic",
+    # "SpotifyAB.SpotifyMusic" # Falls Spotify App installiert ist
 )
 
 Write-Host "Log-Datei: $LogDatei"
@@ -252,7 +253,7 @@ foreach ($app in $appsToRemove) {
         
         if ($provisionedPackages.Count -gt 0) {
             foreach ($provPackage in $provisionedPackages) {
-                $provPackage | Remove-AppxProvisionedPackage -Online -ErrorAction Stop
+                $provPackage | Remove-AppxProvisionedPackage -Online -ErrorAction Stop -Confirm:$false
                 Write-Log "  [OK] Provisioned Package entfernt: $($provPackage.PackageName)"
             }
         }
