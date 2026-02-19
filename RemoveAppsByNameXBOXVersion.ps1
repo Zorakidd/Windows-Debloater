@@ -148,6 +148,7 @@ $appsToRemove = @(
     "Microsoft.MicrosoftYourPhone",
     "Microsoft.MixedReality.Portal",
     "Microsoft.MSPaint",
+    "Microsoft.MSPaintApp",
     "Microsoft.MicrosoftOfficeHub", # Office Dinge
     "Microsoft.Office.Desktop",
     "Microsoft.Office.Lens",
@@ -207,7 +208,6 @@ $appsToRemove = @(
     "Microsoft.PowerAutomateDesktop",
     "Microsoft.PeopleApp",
     "Microsoft.BingSearch",
-    "Microsoft.MSPaintApp",
     "Microsoft.Paint",
     "Microsoft.OutlookForWindows",
     "Microsoft.XING",
