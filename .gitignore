@@ -2,7 +2,7 @@
 /AppUninstallDailyVersion.exe
 /AppUninstallXBOXVersion.exe
 /CreateRelease.ps1
-/CreateReleaseDaily.ps1
-/CreateReleaseXBOX.ps1
+/CreateReleaseDailyVersion.ps1
+/CreateReleaseXBOXVersion.ps1
 /Remove copy.ps1
 /Verlagerung
