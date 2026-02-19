@@ -165,6 +165,7 @@ $appsToRemove = @(
     "Microsoft.Todos",
     "Microsoft.Wallet",
     "Microsoft.WebMediaExtensions",
+    "Microsoft.WidgetsPlatformRuntime",
     "Microsoft.Whiteboard",
     "Microsoft.WindowsAlarms",
     "Microsoft.WindowsCamera",
