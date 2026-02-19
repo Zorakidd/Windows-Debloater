@@ -12,8 +12,8 @@ There are three versions:
 
 ## 📥 Download
 
-[![Download Daily](https://img.shields.io/badge/⬇️_Download-Daily-blue?style=for-the-badge)](https://github.com/Zorakidd/Windows-Debloater/releases/download/Dailyv1.6/AppUninstallDailyVersion.exe)
-[![Download Minecraft-friendly](https://img.shields.io/badge/⬇️_Download-Minecraft_Friendly-blue?style=for-the-badge)](https://github.com/Zorakidd/Windows-Debloater/releases/download/XBOXv1.6/AppUninstallXBOXVersion.exe)
+[![Download Daily](https://img.shields.io/badge/⬇️_Download-Daily-blue?style=for-the-badge)](https://github.com/Zorakidd/Windows-Debloater/releases/download/Dailyv_1.6/AppUninstallDailyVersion.exe)
+[![Download Minecraft-friendly](https://img.shields.io/badge/⬇️_Download-Minecraft_Friendly-blue?style=for-the-badge)](https://github.com/Zorakidd/Windows-Debloater/releases/download/XBOX_v1.6/AppUninstallXBOXVersion.exe)
 [![Download All-uninstall](https://img.shields.io/badge/⬇️_Download-All_uninstall-blue?style=for-the-badge)](https://github.com/Zorakidd/Windows-Debloater/releases/download/v1.6/AppUninstall.exe)
 
 ---
